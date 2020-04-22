@@ -1,0 +1,300 @@
+﻿
+<link type="text/css" href="~/Content/Site.css" rel="stylesheet" />
+<style>
+.custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  color: #eee;
+  font-family: "Dosis", sans-serif;
+     width:100%;
+    height: 5vw;
+    margin: 0 auto;
+}
+.brk-btn{
+    text-decoration:none!important;
+      color: aqua;
+  padding-bottom: 0.15em;
+  box-sizing: border-box;
+}
+.brk-btn:hover{
+    text-decoration:none!important;
+      color: white;
+}
+.sample-header {
+     border: 2px solid #D4D4D4; 
+     background: black; 
+     color: #FFFFFF; 
+     padding: 8px 15px; 
+     border-bottom: none; 
+     display: inline-block; 
+     margin: 10px 0px 0px 0px; 
+}
+
+
+    .brk-btn {
+        position: relative;
+        background: none;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 0.2em solid aqua;
+        padding: 0.5em 1em;
+    }
+    .brk-btn::before {
+            content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    right: 20%;
+    top: -0.21em;
+    transform: skewX(-45deg);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+    .brk-btn::after {
+        content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    left: 20%;
+    bottom: -0.25em;
+    transform: skewX(45deg);
+    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+    .brk-btn:hover:before  {
+         right: 80%;
+    }
+        .brk-btn:hover:after  {
+          left: 80%;
+    }
+        input[type=text] {
+  width: 100%;
+  color:black;
+
+  box-sizing: border-box;
+  border: 1px solid #555;
+  outline: none;
+}
+
+input[type=text]:focus {
+  background-color: lightblue;
+  color:white;
+}
+
+
+
+</style>
+<section class="content-wrapper main-content clear-fix">
+
+    <h1>GET api/GetWindows</h1>
+
+    <div>
+        <p></p>
+
+        <h4 class="sample-header">Request Information</h4>
+        <table class="help-page-table">
+            <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="parameter-name">currentDate</td>
+                    <td class="parameter-type">
+                        datetime
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Start of time-interval</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter-name">horizon</td>
+                    <td class="parameter-type">
+                        int 
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Interval in days to calculate available time-windows</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="sample-content">
+            <span><b>Sample:</b></span>
+<pre class="wrapped">
+     { "currentDate":"2020-04-18T15:00", "horizon": 3 }
+</pre>
+        </div>
+
+        <h4 class="sample-header">Response Information</h4>
+        <table class="help-page-table">
+            <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="parameter-name">name</td>
+                    <td class="parameter-type">
+                        string
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Time-window name</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="parameter-name">description</td>
+                    <td class="parameter-type">
+                        string 
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Time-window desciption</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="parameter-name">start</td>
+                    <td class="parameter-type">
+                        datetime 
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Delivery window start time</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="parameter-name">finish</td>
+                    <td class="parameter-type">
+                        datetime
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Delivery window end time</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="parameter-name">price</td>
+                    <td class="parameter-type">
+                        decimal 
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Delivery cost</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="parameter-name">type</td>
+                    <td class="parameter-type">
+                        string
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Delivery window type</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="parameter-name">available</td>
+                    <td class="parameter-type">
+                        boolean 
+                    </td>
+                    <td class="parameter-documentation">
+                        <p>Window availability calculated based on all restrictions</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <div class="sample-content">
+                <span><b>Sample:</b></span>
+<pre class="wrapped">
+[{
+"name": "Срочная доставка",
+"description": "Доставка за 1-2 часа",
+"start": "2020-04-18T15:00",
+"finish": "2020-04-18T17:00",
+"price": 99,
+"type": "urgent",
+"available": <span style="background-color:greenyellow">true</span>
+},
+{
+"name": "14:00 - 18:00",
+"description": "Доставка 14:00 - 18:00",
+"start": "2020-04-18T14:00",
+"finish": "2020-04-18T18:00",
+"price": 59,
+"type": "regular",
+"available": <span style="background-color:salmon">false</span>
+}}
+</pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<form id="custom-form">
+    <label for="currentDate">currentDate(ex:01 01 2020 00:00:00 )</label>
+    <input type="text" id="currentDate" name="currentDate">
+    <label for="horizon">horizon</label>
+    <input type="text" id="horizon" name="horizon">
+    <div class="custom">
+        <a href=# class="brk-btn">
+            <input type="submit" class="brk-btn" value="GET WINDOWS" />
+        </a>
+    </div>
+</form> 
+<div class="sample-content" id="result-container"  style="display:none">
+<pre class="wrapped" id="result">
+</pre>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $("#custom-form").submit(function () {
+        $("#result").empty();
+        event.preventDefault();
+        var currentDate = $("#currentDate").val();
+        var date = new Date(currentDate);
+        var horizon = $("#horizon").val();
+        var url = "/api/values";
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: 'json',
+            data: { currentDate: date.toISOString(), horizon: horizon },
+            success: function (data) {
+                $("#result").append(data);
+
+                data.forEach(function (item) {
+                    let myContainer = `<div>
+
+------------------------------------
+"name": ${item.Name},
+"description": ${item.Description},
+"start": ${item.Start},
+"finish": ${item.Finish},
+"price": ${item.Price},
+"type": ${item.Type},
+"available": ${item.Available}
+------------------------------------
+
+                        </div>`;
+                    // This line appends the string we just built into the DOM.
+                    $("#result-container").css("display", "block");
+                    document.querySelector("#result").innerHTML += myContainer;
+                });
+            },
+            error: function (error) {
+                alert("PLEASE PROVIDE DATE IN CORRECT FORMAT: ex:01 01 2020 00:00:00");
+            }
+            
+        });
+        });
+</script>
+
